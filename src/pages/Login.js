@@ -30,7 +30,7 @@ class Login extends Component {
     }
   }
 
-  handleLoginClick = () => {
+  handleLoginButtonClick = () => {
     const { email } = this.state;
     const { history, dispatch } = this.props;
 
@@ -44,34 +44,39 @@ class Login extends Component {
 
     return (
       <form>
-        <label htmlFor="emial">
-          email
+
+        <label htmlFor="email">
+          Email
           <input
-            data-testid="email-input"
-            type="email"
             id="email"
-            onChange={ this.handleInputChange }
             value={ email }
-          />
-        </label>
-        <label htmlFor="password">
-          password
-          <input
-            data-testid="password-input"
-            typr="password"
-            id="password"
+            data-testid="email-input"
             onChange={ this.handleInputChange }
-            value={ password }
+            type="email"
           />
         </label>
+
+        <label htmlFor="password">
+          Password
+          <input
+            id="password"
+            value={ password }
+            data-testid="password-input"
+            onChange={ this.handleInputChange }
+            type="password"
+          />
+        </label>
+
         <button
           type="button"
           disabled={ isLoginButtonDisabled }
-          onClick={ this.handleLoginClick }
+          onClick={ this.handleLoginButtonClick }
         >
           Entrar
         </button>
+
       </form>
+
     );
   }
 }
@@ -79,10 +84,6 @@ class Login extends Component {
 export default connect()(Login);
 
 Login.propTypes = {
-  history: PropTypes.shape.isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
-
-//------------------------------------------------------------------------------------------------
-// Comentário
-//------------------------------------------------------------------------------------------------
+  history: PropTypes.object,
+  dispatch: PropTypes.func,
+}.isRequired;
