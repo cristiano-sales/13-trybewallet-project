@@ -15,6 +15,13 @@ export const newExpense = (expense) => ({
   newExpense: expense,
 });
 
+//----------------------------------------------------------------------------------------------------
+// fetchExchangeRates recebe um objeto (que será newExpenseObject, do estado do FormNewExpense)
+// Faz a requisição a api de cotações de moedas por meio da getTaxasDeCambio
+// newExpenseWithExchangeRates guarda o resultado dessa requisição e também o newExpenseObject
+// Então é despachado por meio da action creator newExpense
+//----------------------------------------------------------------------------------------------------
+
 export const fetchExchangeRates = (newExpenseObject) => async (dispatch) => {
   const exchangeRates = await getTaxasDeCambio();
   const newExpenseWithExchangeRates = { ...newExpenseObject, exchangeRates };

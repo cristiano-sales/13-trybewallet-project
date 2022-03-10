@@ -26,8 +26,13 @@ class FormNewExpense extends Component {
     this.setState({ currencies: currenciesArray });
   }
 
+  //----------------------------------------------------------------------------------------------
+  //  handleInputChange altera o estado com base no estado anterior, setando em newExpenseObject
+  // os valores digitados no input. Assim, o valor digitado no input de id="value" é setado para newExpenseObject.value, assim como
+  // o valor escolhido no input de id="method" é setado em newExpenseObject.method
+  //----------------------------------------------------------------------------------------------
+
   handleInputChange = ({ target: { id, value } }) => {
-    // console.log(id, value);
     this.setState((prevState) => ({
       ...prevState,
       newExpenseObject: {
@@ -38,16 +43,14 @@ class FormNewExpense extends Component {
   }
 
   //----------------------------------------------------------------------------------------------
-  // Abaixo
   // Ao clicar em Adicionar Despesa, salva as informações da despesa no estado global
   // handleNewExpenseClick despacha fetchExchangeRates passando para ela newExpenseObject do estado deste form, o objeto contendo os dados da nova despesa
   // fetchExchangeRates é responsável por trazer o fetch da taxa de câmbio, por meio da getTaxasDeCambio
-  // Ela faz o dispatch da action newExpense passando newExpenseObject do estado deste form mais a taxa de cambio resultante do getTaxasDeCambio
+  // Ela faz o dispatch da action creator newExpense passando newExpenseObject do estado deste form mais a taxa de cambio resultante do getTaxasDeCambio
   // Assim é criado um NEW_EXPENSE no estado global
   //----------------------------------------------------------------------------------------------
 
   handleNewExpenseClick = () => {
-    // console.log(this.state);
     const { newExpenseObject } = this.state;
     const { dispatch } = this.props;
 
@@ -60,7 +63,6 @@ class FormNewExpense extends Component {
         newExpenseObject: {
           ...prevState.newExpenseObject,
           // O id da despesa deve ser um número sequencial, começando em 0
-          // calcula o id com base no estado anterior
           id: prevState.newExpenseObject.id + 1,
           value: 0,
           description: '' },
